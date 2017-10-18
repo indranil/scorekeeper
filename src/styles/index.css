@@ -28,6 +28,11 @@
   text-align: center;
 }
 
+#content .scorekeeper table td.table-buttons .button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 #content .scorekeeper table tfoot, #content .scorekeeper table thead {
   font-weight: bold;
 }

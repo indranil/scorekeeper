@@ -3,41 +3,30 @@ import React, { Component } from 'react';
 class ScoreBoard extends Component {
   render() {
     if (this.props.gameStarted) {
+      let numPlayers = this.props.players.length;
       return (
         <div className="scorekeeper row">
           <div className="columns eight">
             <table className="u-full-width">
               <thead>
                 <tr>
-                  <td>Ale</td>
-                  <td>Indi</td>
-                  <td>Jakob</td>
-                  <td>Sam</td>
+                  {this.props.players.map((player) =>
+                    <td key={player.id}>{player.name}</td>
+                  )}
                 </tr>
               </thead>
               <tbody>
+                {this.props.scores.map((score, index) =>
+                  <tr key={index}>
+                    {score.map(s =>
+                      <td key={s.id}>{s.score}</td>
+                    )}
+                  </tr>
+                )}
                 <tr>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>-5</td>
-                </tr>
-                <tr>
-                  <td>20</td>
-                  <td>5</td>
-                  <td>10</td>
-                  <td>30</td>
-                </tr>
-                <tr>
-                  <td>0</td>
-                  <td>14</td>
-                  <td>18</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td colSpan="4">
+                  <td className="table-buttons" colSpan={numPlayers}>
                     <button className="button">New Round</button>
-                    <button className="button">Finish Game</button>
+                    <button className="button" onClick={this.props.finishGame}>Finish Game</button>
                   </td>
                 </tr>
               </tbody>

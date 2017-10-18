@@ -19,8 +19,7 @@ class NewGameForm extends Component {
       for (let i = 0; i < (num - numPlayers); i++) {
         newPlayers.push({
           name: "",
-          id: (numPlayers+i),
-          scores: [],
+          id: (numPlayers+i+1),
         });
       }
     } else if (num < numPlayers) {
@@ -33,6 +32,7 @@ class NewGameForm extends Component {
   }
   render() {
     if (this.props.showNewForm) {
+      let numPlayers = this.props.players.length;
       return (
         <form onSubmit={this.props.createGame} className="new-scoreboard">
           <div className="row">
@@ -40,13 +40,15 @@ class NewGameForm extends Component {
           </div>
           <div className="row">
             <label className="columns three">Players</label>
-            <input type="number" className="columns two" max="10" min="1" onChange={this.changeNumPlayers} />
+            <input type="number" className="columns two" max="10" min="1" value={numPlayers} onChange={this.changeNumPlayers} />
           </div>
           <div className="row">
             <label className="columns three">Names</label>
             <div className="columns six">
               {this.props.players.map((player) =>
-                <span key={player.id}><input type="text" value={player.name} onChange={(e) => this.props.changePlayerName(player.id, e.target.value) } /><br /></span>
+                <span key={player.id}>
+                  <input type="text" value={player.name} onChange={(e) => this.props.changePlayerName(player.id, e.target.value) } /><br />
+                </span>
               )}
             </div>
           </div>

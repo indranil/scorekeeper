@@ -10,33 +10,97 @@ class App extends Component {
   state = {
     gameStarted: false,
     showNewForm: false,
-    players: [],
+    players: [
+      {
+        id: 1,
+        name: "Ale",
+      },
+      {
+        id: 2,
+        name: "Indi",
+      },
+      {
+        id: 3,
+        name: "Sam",
+      }
+    ],
+    scores: [
+      [
+        {
+          id: 1,
+          score: 4,
+        },
+        {
+          id: 2,
+          score: 10,
+        },
+        {
+          id: 3,
+          score: 20,
+        }
+      ],
+      [
+        {
+          id: 1,
+          score: 10,
+        },
+        {
+          id: 2,
+          score: 10,
+        },
+        {
+          id: 3,
+          score: 20,
+        }
+      ],
+    ],
     roundOnHundred: false,
   };
   
   handleShowNewForm = () => {
-    this.setState ({ showNewForm: true });
+    this.setState ({ gameStarted: false, showNewForm: true });
   }
   
   instantiatePlayers = (newPlayers) => {
     this.setState({ players: newPlayers });
   }
   
-  changePlayerName = (playerId, e) => {
-    let players = this.state.players;
-    players[playerId].name = e;
-    this.setState({ players: players });
+  changePlayerName = (playerId, name) => {
+    this.setState({ players: this.state.players.map((player) => {
+      if (playerId === player.id) {
+        return {
+          ...player,
+          name: name,
+        };
+      }
+      return player;
+    }) });
   }
   
   updateRoundOnHundred = () => {
     this.setState({ roundOnHundred: !this.state.roundOnHundred });
   }
   
-  createGame = () => {
+  createGame = (e) => {
+    e.preventDefault();
     this.setState({
       showNewForm: false,
       gameStarted: true,
     })
+  }
+  
+  finishGame = () => {
+    this.setState({
+      showNewForm: false,
+      gameStarted: false,
+      players: [],
+      scores: [],
+    })
+  }
+  
+  componentDidUpdate = (prevProps, prevState) => {
+    // handle sorting of scores and players...
+    
   }
   
   render() {
@@ -47,7 +111,9 @@ class App extends Component {
         <div id="content" className="container">
           <ScoreBoard
             gameStarted={this.state.gameStarted}
-            players={this.state.players} />
+            players={this.state.players}
+            scores={this.state.scores}
+            finishGame={this.finishGame} />
           
           <NewGameForm
             showNewForm={this.state.showNewForm}

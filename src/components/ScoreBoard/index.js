@@ -1,50 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ScoreBoard extends Component {
-  render() {
-    if (this.props.gameStarted) {
-      let numPlayers = this.props.players.length;
-      return (
-        <div className="scorekeeper row">
-          <div className="columns eight">
+import NewRound from './NewRound';
+import Totals from './Totals';
+
+const ScoreBoard = (props) => {
+  if (props.gameStarted) {
+    let numPlayers = props.players.length;
+    return (
+      <div className="scorekeeper row">
+        <div className="columns eight">
+          <form onSubmit={props.addNewRound}>
             <table className="u-full-width">
               <thead>
                 <tr>
-                  {this.props.players.map((player) =>
+                  {props.players.map((player) =>
                     <td key={player.id}>{player.name}</td>
                   )}
                 </tr>
               </thead>
               <tbody>
-                {this.props.scores.map((score, index) =>
+                {props.scores.map((score, index) =>
                   <tr key={index}>
                     {score.map(s =>
                       <td key={s.id}>{s.score}</td>
                     )}
                   </tr>
                 )}
+                <NewRound
+                  changeScore={props.changeScore}
+                  addingRound={props.addingRound}
+                  players={props.players} />
                 <tr>
-                  <td className="table-buttons" colSpan={numPlayers}>
-                    <button className="button">New Round</button>
-                    <button className="button" onClick={this.props.finishGame}>Finish Game</button>
-                  </td>
+                  {props.addingRound ?
+                    <td className="table-buttons" colSpan={numPlayers}>
+                      <button type="submit" className="button-primary">Save</button>
+                    </td>
+                  :
+                    <td className="table-buttons" colSpan={numPlayers}>
+                      <button className="button" onClick={props.handleAddingRound}>New Round</button>
+                      <button className="button" onClick={props.finishGame}>Finish Game</button>
+                    </td>
+                  }
                 </tr>
               </tbody>
               <tfoot>
-                <tr>
-                  <td>30</td>
-                  <td>29</td>
-                  <td>48</td>
-                  <td>45</td>
-                </tr>
+                <Totals players={props.players} scores={props.scores} roundOnHundred={props.roundOnHundred} />
               </tfoot>
             </table>
-          </div>
+          </form>
         </div>
-      );
-    }
-    return '';
+      </div>
+    );
   }
+  return null;
 }
 
 export default ScoreBoard;

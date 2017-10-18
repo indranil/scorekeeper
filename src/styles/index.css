@@ -17,6 +17,7 @@
 }
 
 #content .scorekeeper .columns {
+  padding-top: 30px;
   margin: 0 auto;
   float: none;
 }
@@ -26,6 +27,17 @@
 
 #content .scorekeeper table td {
   text-align: center;
+}
+
+#content .scorekeeper table tr.add-score td input {
+  width: 50px;
+  text-align: center;
+}
+
+#content .scorekeeper table tr.add-score td input[type=number]::-webkit-inner-spin-button,
+#content .scorekeeper table tr.add-score td input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #content .scorekeeper table td.table-buttons .button {

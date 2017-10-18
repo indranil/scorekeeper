@@ -10,50 +10,10 @@ class App extends Component {
   state = {
     gameStarted: false,
     showNewForm: false,
-    players: [
-      {
-        id: 1,
-        name: "Ale",
-      },
-      {
-        id: 2,
-        name: "Indi",
-      },
-      {
-        id: 3,
-        name: "Sam",
-      }
-    ],
-    scores: [
-      [
-        {
-          id: 1,
-          score: 4,
-        },
-        {
-          id: 2,
-          score: 10,
-        },
-        {
-          id: 3,
-          score: 20,
-        }
-      ],
-      [
-        {
-          id: 1,
-          score: 10,
-        },
-        {
-          id: 2,
-          score: 10,
-        },
-        {
-          id: 3,
-          score: 20,
-        }
-      ],
-    ],
+    players: [],
+    scores: [],
+    addingRound: false,
+    newScore: [],
     roundOnHundred: false,
   };
   
@@ -89,7 +49,50 @@ class App extends Component {
     })
   }
   
-  finishGame = () => {
+  handleAddingRound = (e) => {
+    e.preventDefault();
+    this.setState({ addingRound: true });
+  }
+  
+  changeScore = (e, player_id) => {
+    let newScore = this.state.newScore;
+    let obj = {
+      id: player_id,
+      score: Number(e.target.value),
+    };
+    
+    let index = -1;
+    newScore.filter((s, pos) => {
+      if( s.id === player_id ) {
+        delete newScore[index = pos];
+      }
+      return true;
+    });
+    
+    if( index === -1 ) {
+      newScore.push(obj);
+    } else {
+      newScore[index] = obj;
+    }
+    
+    this.setState({
+      newScore: newScore
+    });
+  }
+  
+  addNewRound = (e) => {
+    e.preventDefault();
+    let scores = this.state.scores;
+    scores.push(this.state.newScore);
+    this.setState({
+      scores: scores,
+      newScore: [],
+      addingRound: false,
+    });
+  }
+  
+  finishGame = (e) => {
+    e.preventDefault();
     this.setState({
       showNewForm: false,
       gameStarted: false,
@@ -113,7 +116,12 @@ class App extends Component {
             gameStarted={this.state.gameStarted}
             players={this.state.players}
             scores={this.state.scores}
-            finishGame={this.finishGame} />
+            addingRound={this.state.addingRound}
+            roundOnHundred={this.state.roundOnHundred}
+            finishGame={this.finishGame}
+            handleAddingRound={this.handleAddingRound}
+            changeScore={this.changeScore}
+            addNewRound={this.addNewRound} />
           
           <NewGameForm
             showNewForm={this.state.showNewForm}

@@ -38,11 +38,11 @@ class NewGameForm extends Component {
           <div className="row">
             <h4 className="column">New Game</h4>
           </div>
-          <div className="row">
+          <div className="row num-players">
             <label className="columns three">Players</label>
             <input type="number" className="columns two" max="10" min="1" value={numPlayers} onChange={this.changeNumPlayers} />
           </div>
-          <div className="row">
+          <div className="row player-names">
             <label className="columns three">Names</label>
             <div className="columns six">
               {this.props.players.map((player) =>
@@ -52,7 +52,7 @@ class NewGameForm extends Component {
               )}
             </div>
           </div>
-          <div className="row">
+          <div className="row spl-options">
             <label className="columns three">Options</label>
             <div className="columns nine">
               <label>

@@ -4,14 +4,13 @@ import { mount, shallow } from 'enzyme';
 
 // Import all the components
 import App from '../components/App';
-import Header from '../components/Header';
 
 describe('smoke test', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
   });
-  it('enzyme installed', () => {
+  it('installed enzyme', () => {
     shallow(<App />);
   });
   it('loads the app', () => {

@@ -1,0 +1,42 @@
+#header {
+  margin-top: 50px;
+}
+
+#header h1 {
+  color: #68A9FF;
+  margin-bottom: 0;
+}
+
+#content {}
+
+#content .add-scoreboard {
+  text-align: center;
+}
+
+#content .new-scoreboard .submitter {
+}
+
+#content .scorekeeper .columns {
+  margin: 0 auto;
+  float: none;
+}
+
+#content .scorekeeper table {
+}
+
+#content .scorekeeper table td {
+  text-align: center;
+}
+
+#content .scorekeeper table tfoot, #content .scorekeeper table thead {
+  font-weight: bold;
+}
+
+#content .scorekeeper table tfoot td {
+  border-top: 2px solid black;
+}
+
+#footer {
+  margin-top: 100px;
+  font-size: 0.9em;
+}

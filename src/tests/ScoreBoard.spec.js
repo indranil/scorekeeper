@@ -14,15 +14,15 @@ describe('testing the scoreboard', () => {
       players: [
         {
           id: 1,
-          name: "Ale",
+          name: "Ron",
         },
         {
           id: 2,
-          name: "Indi",
+          name: "Harry",
         },
         {
           id: 3,
-          name: "Sam",
+          name: "Hermione",
         }
       ],
       scores: [

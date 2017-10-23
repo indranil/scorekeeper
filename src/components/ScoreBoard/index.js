@@ -38,7 +38,7 @@ const ScoreBoard = (props) => {
                   :
                     <td className="table-buttons" colSpan={numPlayers}>
                       <button className="button" onClick={props.handleAddingRound}>New Round</button>
-                      <button className="button" onClick={props.finishGame}>Finish Game</button>
+                      <button className="button" onClick={(e) => { if(window.confirm('Are you sure you want to finish the game?')) {props.finishGame(e)} }}>Finish Game</button>
                     </td>
                   }
                 </tr>

@@ -9,11 +9,13 @@ import NewGameForm from '../components/NewGameForm';
 describe('testing the new game form', () => {
   let app;
   beforeEach(() => {
+    localStorage.clear();
     app = mount(<App />);
     app.setState({ showNewForm: true });
   })
   
   it('does not load the form on page start', () => {
+    localStorage.clear();
     const mainApp = mount(<App />);
     const heading = <h4 className="column">New Game</h4>;
     expect(mainApp.contains(heading)).toEqual(false);

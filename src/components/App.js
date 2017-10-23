@@ -7,15 +7,23 @@ import ScoreBoard from './ScoreBoard';
 import Footer from './Footer';
 
 class App extends Component {
-  state = {
-    gameStarted: false,
-    showNewForm: false,
-    players: [],
-    scores: [],
-    addingRound: false,
-    newScore: [],
-    roundOnHundred: false,
-  };
+  constructor(props) {
+    super(props);
+    let ls = localStorage.getItem('scorekeeperState');
+    if (ls !== null) {
+      this.state = JSON.parse(ls);
+    } else {
+      this.state = {
+        gameStarted: false,
+        showNewForm: false,
+        players: [],
+        scores: [],
+        addingRound: false,
+        newScore: [],
+        roundOnHundred: false,
+      };
+    }
+  }
   
   handleShowNewForm = () => {
     this.setState ({ gameStarted: false, showNewForm: true });
@@ -98,12 +106,12 @@ class App extends Component {
       gameStarted: false,
       players: [],
       scores: [],
-    })
+    });
   }
   
   componentDidUpdate = (prevProps, prevState) => {
-    // handle sorting of scores and players...
-    
+    // store files in localStorage for later use
+    localStorage.setItem('scorekeeperState', JSON.stringify(this.state));
   }
   
   render() {

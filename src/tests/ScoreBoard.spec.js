@@ -8,33 +8,25 @@ import App from '../components/App';
 describe('testing the scoreboard', () => {
   let app;
   beforeEach(() => {
+    localStorage.clear();
     app = mount(<App />);
     app.setState({
       gameStarted: true,
       players: [
-        {
-          id: 1,
-          name: "Ron",
-        },
-        {
-          id: 2,
-          name: "Harry",
-        },
-        {
-          id: 3,
-          name: "Hermione",
-        }
+        {id: 1, name: "Ron"},
+        {id: 2, name: "Hermione"},
+        {id: 3, name: "Harry"},
       ],
       scores: [
         [
-          {id: 1,score: 4},
-          {id: 2,score: 10},
-          {id: 3,score: 20},
+          {id: 1, score: 4},
+          {id: 2, score: 10},
+          {id: 3, score: 20},
         ],
         [
-          {id: 1,score: 10},
-          {id: 2,score: 10},
-          {id: 3,score: 20},
+          {id: 1, score: 10},
+          {id: 2, score: 10},
+          {id: 3, score: 20},
         ],
       ]
     });
@@ -49,6 +41,8 @@ describe('testing the scoreboard', () => {
   it("finishes the game when clicked", () => {
     let button = app.find('.scorekeeper table tbody td.table-buttons button').at(1);
     button.simulate('click');
+    
+    
     
     expect(app.state().gameStarted).toEqual(false);
   });

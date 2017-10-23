@@ -9,7 +9,8 @@ You can view a running example of the app at [http://keepscores.surge.sh/](http:
 
 ### TODOS:
 
-* Dialog box when clicking Finish Game
-* Saving the data to local storage so that you can refresh the page
+* ~~Dialog box when clicking Finish Game~~
+* ~~Saving the data to local storage so that you can refresh the page~~
+* Maybe more options? Perhaps a win/lose condition.
 
-(c) Indranil Dasgupta :)
+_- Indranil Dasgupta :)_

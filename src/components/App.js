@@ -91,7 +91,8 @@ class App extends Component {
   addNewRound = (e) => {
     e.preventDefault();
     let scores = this.state.scores;
-    scores.push(this.state.newScore);
+    
+    scores.push(this.state.newScore.sort((s1, s2) => s1.id > s2.id ? 1 : -1));
     this.setState({
       scores: scores,
       newScore: [],

@@ -12,5 +12,9 @@ You can view a running example of the app at [http://keepscores.surge.sh/](http:
 * ~~Dialog box when clicking Finish Game~~
 * ~~Saving the data to local storage so that you can refresh the page~~
 * Maybe more options? Perhaps a win/lose condition.
+* Fixed header when scrolling past long lists, so player names always stay on top
+* Display score on round when hovering over a row
+* A large screen mode? (maybe!)
+* A remote desktop mode (update on phone, display on TV / monitor)
 
 _- Indranil Dasgupta :)_

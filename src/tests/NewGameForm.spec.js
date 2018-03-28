@@ -47,12 +47,47 @@ describe('testing the new game form', () => {
     expect(forms.find('input').length).toEqual(app.state().players.length);
   });
   
+  it('displays the correct name for the players', () => {
+    app.setState({
+      players: [
+        ...app.state().players,
+        {
+          name: "Test Name",
+          id: 4
+        }
+      ],
+    });
+    const forms = app.find('NewGameForm .player-names div').at(0);
+    const inp = forms.find('input').at(0);
+    expect(inp.props().value).toEqual("Test Name");
+  });
+  
   it('changes number of players when number input is changed', () => {
     const numInput = app.find('NewGameForm .num-players input').at(0);
     
     numInput.simulate('change', { target: { value: 5 }});
     
     expect(app.state().players.length).toEqual(5);
+  });
+  
+  it('should limit the range from 0 to 10', () => {
+    const numInput = app.find('NewGameForm .num-players input').at(0);
+    
+    numInput.simulate('change', { target: { value: -4 }});
+    expect(app.state().players.length).toEqual(0);
+    
+    numInput.simulate('change', { target: { value: 15 }});
+    expect(app.state().players.length).toEqual(10);
+  });
+  
+  it ('correctly reduces the number of changed players', () => {
+    const numInput = app.find('NewGameForm .num-players input').at(0);
+    
+    numInput.simulate('change', { target: { value: 5 }});
+    expect(app.state().players.length).toEqual(5);
+    
+    numInput.simulate('change', { target: { value: 2 }});
+    expect(app.state().players.length).toEqual(2);
   });
   
   it('allows you to change the special options', () => {

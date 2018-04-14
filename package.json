@@ -10,6 +10,11 @@
     "react-scripts": "1.0.14",
     "react-test-renderer": "^16.0.0"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

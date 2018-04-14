@@ -1,5 +1,6 @@
 ## Scorekeeper
 ---
+[![Build Status](https://travis-ci.org/indranil/scorekeeper.svg?branch=master)](https://travis-ci.org/indranil/scorekeeper) [![Coverage Status](https://coveralls.io/repos/github/indranil/scorekeeper/badge.svg?branch=master)](https://coveralls.io/github/indranil/scorekeeper?branch=master)
 
 Simple react app to keep tabs of scores on round based games.
 
@@ -17,4 +18,6 @@ You can view a running example of the app at [http://keepscores.surge.sh/](http:
 * A large screen mode? (maybe!)
 * A remote desktop mode (update on phone, display on TV / monitor)
 
-_- Indranil Dasgupta :)_
+✌🏽
+
+_- indi_

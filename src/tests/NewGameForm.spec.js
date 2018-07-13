@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 
 // Import all the components
@@ -28,7 +27,6 @@ describe('testing the new game form', () => {
   
   it('displays the correct number of players on start', () => {
     const numInput = app.find('NewGameForm .num-players input').at(0)
-    
     expect(numInput.props().value).toEqual(app.state().players.length);
   });
   
@@ -96,6 +94,20 @@ describe('testing the new game form', () => {
     
     expect(app.state().roundOnHundred).toEqual(true);
   });
+
+  it('allows you to change the name of the player', () => {
+    app.setState({
+      players: [
+        {
+          name: "Test",
+          id: 4,
+        },
+      ],
+    });
+    const playerName = app.find('NewGameForm .player-names input').at(0);
+    playerName.simulate('change', {target: {value: "Something Else"}});
+    expect(app.state().players[0].name).toBe("Something Else");
+  })
   
   it('saves players and starts a new game', () => {
     app.setState({

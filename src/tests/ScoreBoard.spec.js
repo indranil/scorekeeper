@@ -41,9 +41,6 @@ describe('testing the scoreboard', () => {
   it("finishes the game when clicked", () => {
     let button = app.find('.scorekeeper table tbody td.table-buttons button').at(1);
     button.simulate('click');
-    
-    
-    
     expect(app.state().gameStarted).toEqual(false);
   });
   
